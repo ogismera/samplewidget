@@ -49,7 +49,7 @@
 
 		xhr.send(data);
 		       
-		var oTable = document.getElementById('Table_1');
+		var oTable = document.getElementById('sap-ui-static');
 
       
                 var rowLength = oTable.rows.length;
