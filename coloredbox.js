@@ -51,19 +51,7 @@
 
                }
 
-               
-               setText(newText) {
-		        var _text;
- 			this._text = newText;
-			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
- 			detail: {
- 			properties: {
- 			text: this._text
- 			}
- 			}));
-		 }
-
-
+          
 
 
 		onCustomWidgetBeforeUpdate(changedProperties) {
