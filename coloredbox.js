@@ -13,7 +13,7 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
-        var _text;
+        
 		constructor() {
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
