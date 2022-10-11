@@ -48,6 +48,14 @@
  		console.log(data);
 
 		xhr.send(data);
+		       
+		var oTable = document.getElementById('Table_1');
+
+      
+                var rowLength = oTable.rows.length;
+		
+		console.log(rowLength);
+		       
 
                }
 
