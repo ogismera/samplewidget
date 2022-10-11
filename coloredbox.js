@@ -13,8 +13,9 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
-        var _text;
+        
 		constructor() {
+			var _text;
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
 			shadowRoot.appendChild(template.content.cloneNode(true));
@@ -26,7 +27,7 @@
 		}
 
                Arria_Call(){
-
+                
                  var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OAvYPe1y9gA";
 
                 var xhr = new XMLHttpRequest();
