@@ -57,17 +57,11 @@
 		onCustomWidgetAfterUpdate(changedProperties) {
                         this.Arria_Call();
 		
- 		this._text = "Holaa";
- 	        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                                                 detail: {
-                                                     properties: {
-                                                        text: this._text
- }
- }));
- }
+ 		        this.text = "Holaa";
+ 	                this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                                                 detail: { properties: {text: this.text}}));
+                                                                        }
 
-			
-			
 			
 			
 			if ("color" in changedProperties) {
