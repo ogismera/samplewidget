@@ -13,7 +13,7 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
-        var _text;
+       
 		constructor() {
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
@@ -53,6 +53,7 @@
 
                
                setText(newText) {
+		        var _text;
  			this._text = newText;
 			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
  			detail: {
@@ -70,6 +71,7 @@
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
+			
                         this.Arria_Call();
                         this.setText("Hola");
 			if ("color" in changedProperties) {
