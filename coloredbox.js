@@ -1,4 +1,3 @@
- var _text;
 
 (function() { 
 	let template = document.createElement("template");
@@ -55,19 +54,6 @@
                }
 
               
-               setText(newText) {
-		       
- 			this._text = newText;
-			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
- 			detail: {
- 			properties: {
- 			text: this._text
- 			}
- 			}));
-		 }
-	}
-
-
 
 
 		onCustomWidgetBeforeUpdate(changedProperties) {
