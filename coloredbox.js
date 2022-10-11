@@ -1,3 +1,5 @@
+ var _text;
+
 (function() { 
 	let template = document.createElement("template");
 	template.innerHTML = `
@@ -15,7 +17,7 @@
 	class ColoredBox extends HTMLElement {
         
 		constructor() {
-			var _text;
+			
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
 			shadowRoot.appendChild(template.content.cloneNode(true));
@@ -52,8 +54,9 @@
 
                }
 
-               
+              
                setText(newText) {
+		       
  			this._text = newText;
 			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
  			detail: {
