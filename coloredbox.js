@@ -13,7 +13,6 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
-       
 		constructor() {
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
@@ -51,7 +50,18 @@
 
                }
 
-          
+
+               setText(newText) {
+ 			this._text = newText;
+			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
+ 			detail: {
+ 			properties: {
+ 			text: this._text
+ 			}
+ 			}));
+		 }
+
+
 
 
 		onCustomWidgetBeforeUpdate(changedProperties) {
@@ -59,8 +69,8 @@
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
-			
                         this.Arria_Call();
+                        this.setText("Hola");
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
