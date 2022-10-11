@@ -56,6 +56,20 @@
 
 		onCustomWidgetAfterUpdate(changedProperties) {
                         this.Arria_Call();
+		
+ 		this._text = "Holaa";
+ 	        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                                                 detail: {
+                                                     properties: {
+                                                        text: this._text
+ }
+ }));
+ }
+
+			
+			
+			
+			
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
