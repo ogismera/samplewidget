@@ -1,3 +1,5 @@
+ var _text;
+
 (function() { 
 	let template = document.createElement("template");
 	template.innerHTML = `
@@ -13,7 +15,9 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
+        
 		constructor() {
+			
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
 			shadowRoot.appendChild(template.content.cloneNode(true));
@@ -25,7 +29,7 @@
 		}
 
                Arria_Call(){
-
+                
                  var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OAvYPe1y9gA";
 
                 var xhr = new XMLHttpRequest();
@@ -50,8 +54,9 @@
 
                }
 
-
+              
                setText(newText) {
+		       
  			this._text = newText;
 			 this.dispatchEvent(new CustomEvent("propertiesChanged", {
  			detail: {
@@ -70,7 +75,7 @@
 
 		onCustomWidgetAfterUpdate(changedProperties) {
                         this.Arria_Call();
-                        this.setText("Hola");
+        
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
