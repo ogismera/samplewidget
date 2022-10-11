@@ -56,7 +56,6 @@
                
 
 
-
 		onCustomWidgetBeforeUpdate(changedProperties) {
 			this._props = { ...this._props, ...changedProperties };
 		}
@@ -69,6 +68,9 @@
 			if ("opacity" in changedProperties) {
 				this.style["opacity"] = changedProperties["opacity"];
 			}
+			
+			const dataBinding = this.dataBindings.getDataBinding('myDataBinding')
+			console.log(dataBinding);
 		}
 	}
 
