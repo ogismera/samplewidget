@@ -48,13 +48,7 @@
  		console.log(data);
 
 		xhr.send(data);
-		       
-		var oTable = document.getElementById('sap-ui-static');
-
-      
-                var rowLength = oTable.rows.length;
-		
-		console.log(rowLength);
+		     
 		       
 
                }
