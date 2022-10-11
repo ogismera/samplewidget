@@ -55,7 +55,7 @@
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
-                        this.Arria_Call;
+                        this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
