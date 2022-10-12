@@ -76,9 +76,8 @@
                         console.log(this.myDataBinding.data);
 			var datas = this.myDataBinding.data;
 			console.log("Trace 2");
-			const myArr = JSON.parse(datas);
 			console.log("Trace 3");
-			console.log(typeof myArr);
+			console.log(typeof datas);
 			
 		}
 	}
