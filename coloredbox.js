@@ -75,7 +75,8 @@
 			console.log("Trace ");
                         console.log(this.myDataBinding.data);
 			var datas = this.myDataBinding.data;
-			typeof datas
+			console.log(typeof datas)
+			
 			
 		}
 	}
