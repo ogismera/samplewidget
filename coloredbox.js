@@ -79,7 +79,6 @@
 			const myArr = JSON.parse(datas);
 			console.log("Trace 3");
 			console.log(typeof myArr);
-			console.log(myArr);
 			
 		}
 	}
