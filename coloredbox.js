@@ -83,8 +83,8 @@
 			  arr = row
 			} );
 			console.log("Trace 4");
-			console.log(arr.tostring());
-			console.log(typeof datas);
+			console.log(arr);
+			console.log(typeof arr);
 			
 		}
 	}
