@@ -80,7 +80,7 @@
 			console.log(typeof datas);
 			var arr ;
 			this.myDataBinding.data.forEach(row =>{
-			  arr = row
+			  arr = row;
 			} );
 			console.log("Trace 4");
 			console.log(arr);
