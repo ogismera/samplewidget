@@ -61,8 +61,7 @@
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
-			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-			console.log(dataBinding);
+
                         this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
@@ -70,7 +69,9 @@
 			if ("opacity" in changedProperties) {
 				this.style["opacity"] = changedProperties["opacity"];
 			}
-			
+		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+			console.log(dataBinding);
+			await dataBinding.addDimensionToFeed("dimensions", Country);
 
 		}
 	}
