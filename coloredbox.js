@@ -70,8 +70,8 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-			console.log(dataBinding);
-			await dataBinding.addDimensionToFeed("dimensions", Country);
+			console.log('Hola 'dataBinding);
+
 
 		}
 	}
