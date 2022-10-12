@@ -74,11 +74,15 @@
                         console.log(dataBinding);
 			console.log("Trace ");
                         console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data.toString();
+			var datas = this.myDataBinding.data;
 			console.log("Trace 2");
 			console.log("Trace 3");
 			console.log(typeof datas);
-			this.myDataBinding.data.forEach(row => console.log(row));
+			var arr ;
+			this.myDataBinding.data.forEach(row =>{
+			  arr = row
+			} );
+			console.log(arr);
 			
 		}
 	}
