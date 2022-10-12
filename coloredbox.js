@@ -72,7 +72,8 @@
 		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
                         console.log(dataBinding);
-
+			console.log("Trace");
+                        console.log(this.myDataBinding.data);
 		}
 	}
 
