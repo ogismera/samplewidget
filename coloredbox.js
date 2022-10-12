@@ -61,6 +61,8 @@
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
+			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+			console.log(dataBinding);
                         this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
