@@ -82,7 +82,9 @@
 			this.myDataBinding.data.forEach(row =>{
 			  arr = row
 			} );
+			console.log("Trace 4");
 			console.log(arr);
+			console.log(typeof datas);
 			
 		}
 	}
