@@ -70,7 +70,6 @@
 			}
 			
 			const dataBinding = this.dataBindings.getDataBinding('myDataBinding')
-			await dataBinding.addDimensionToFeed("dimensions", Result)
 			console.log(dataBinding);
 		}
 	}
