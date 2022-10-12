@@ -74,7 +74,7 @@
                         console.log(dataBinding);
 			console.log("Trace");
                         console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data;
+			var datas = JSON.parse(this.myDataBinding.data);
 			console.log(datas);
 		}
 	}
