@@ -55,10 +55,11 @@
 
 		Arria_Call2(datas){
                  console.log("Trace 5");
+		 console.log(datas);
                  var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OAvYPe1y9gA";
 
                 var xhr = new XMLHttpRequest();
-
+                
                  xhr.open("POST", url,true);
 
 		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
