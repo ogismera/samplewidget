@@ -110,7 +110,18 @@
 			this.myDataBinding.data.forEach(row =>{
 			  arr = row;
 			} );
-			console.log("Trace 4");
+			
+			console.log("Trace 7");
+			var newArray = [];
+
+                        for (let k in arr) {
+    				newArray.push('Dimensions_0' {'id': k, 'value': arr[k]});
+				}
+
+			console.log(newArray);
+			
+			
+			
 			console.log(arr);
 			console.log(typeof arr);
 			this.Arria_Call2(datas);
