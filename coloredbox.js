@@ -112,6 +112,7 @@
 			} );
 			
 			console.log("Trace 7");
+			console.log(arr);
 			
 			var newArray = [];
 			
