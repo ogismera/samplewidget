@@ -106,8 +106,8 @@
 			console.log("Trace 2");
 			console.log("Trace 3");
 			console.log(typeof datas);
-			var arr ;
-			var count = 1;
+			var arr = [];
+			var count = 0;
 			this.myDataBinding.data.forEach(row =>{
 			  arr[count] =  row;
 		          count++;
