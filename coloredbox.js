@@ -119,7 +119,7 @@
 			
 
                         for (let k in arr) {
-				newArray2.push("Hola" + {'id': k, 'value': arr[k]});
+				newArray2.push({'id': k, 'value': arr[k]});
     				newArray.push("Hola" + {'id': k, 'value': arr[k]});
 				}
 			
@@ -128,7 +128,7 @@
 			console.log(newArray);
 			
 			const obj3 = JSON.stringify(newArray2);
-			
+			 alert(JSON.stringify(student));
 			
 			console.log("Trace 9");
 			
