@@ -127,7 +127,7 @@
 				count = count + 1;
 				}
 			
-			
+			 debugger;
                         console.log("Trace 8");
 			console.log(newArray);
 			
