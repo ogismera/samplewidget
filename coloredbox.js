@@ -119,15 +119,16 @@
 			var newArray2 = [];
 			const obj3 = [];
 			const obj4 = [];
-			count = 1;
+			count = 0;
                         debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
     				obj3 [count] = JSON.stringify(newArray2);
-				obj4 [count]= "Row" + obj3;
+				obj4 [count]= '"Row"' + count + " " + obj3;
 				count = count + 1;
 				}
 			
+			var obj5 = " '{"data":" + obj4 + "}'"
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
