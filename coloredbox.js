@@ -128,7 +128,7 @@
 			console.log(newArray);
 			
 			const obj3 = JSON.stringify(newArray2);
-			 alert(JSON.stringify(student));
+			const obj4 = "Hola" + obj3;
 			
 			console.log("Trace 9");
 			
@@ -137,6 +137,9 @@
 			this.Arria_Call2(datas);
 			console.log("Trace 10");
 			console.log(obj3);
+			console.log(obj4);
+			const obj5 = JSON.parse(obj4);
+			console.log(obj5);
 			
 		}
 	}
