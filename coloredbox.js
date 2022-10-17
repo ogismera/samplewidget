@@ -123,8 +123,8 @@
                         debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
-    				obj3 [count] = JSON.stringify(newArray2);
-				obj4 [count]= '"Row' + count + '" ' + obj3;
+    				obj3 [0] = JSON.stringify(newArray2);
+				obj4 [0]= '"Row' + count + '" ' + obj3;
 				count = count + 1;
 				}
 			
