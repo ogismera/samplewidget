@@ -108,7 +108,7 @@
 			console.log(typeof datas);
 			var arr ;
 			this.myDataBinding.data.forEach(row =>{
-			  arr = ('Hello' + row);
+			  arr =  row;
 			} );
 			
 			console.log("Trace 7");
@@ -118,7 +118,7 @@
 			
 
                         for (let k in arr) {
-    				newArray.push('Hello' +  {'id': k, 'value': arr[k]});
+    				newArray.push( {'id': k, 'value': arr[k]});
 				}
 
 			console.log(newArray);
