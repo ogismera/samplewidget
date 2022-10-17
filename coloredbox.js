@@ -115,9 +115,11 @@
 			console.log(arr);
 			
 			var newArray = [];
+			var newArray2 = [];
 			
 
                         for (let k in arr) {
+				newArray2.push("Hola" + {'id': k, 'value': arr[k]});
     				newArray.push("Hola" + {'id': k, 'value': arr[k]});
 				}
 			
@@ -126,6 +128,7 @@
                         console.log("Trace 8");
 			console.log(newArray);
 			
+			const obj3 = JSON.stringify(newArray2);
 			const obj2 = "Hola "+ obj1;
 			
 			console.log("Trace 9");
@@ -133,6 +136,8 @@
 			console.log(arr);
 			console.log(typeof arr);
 			this.Arria_Call2(datas);
+			console.log("Trace 10");
+			console.log(obj3);
 			
 		}
 	}
