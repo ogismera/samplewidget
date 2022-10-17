@@ -110,7 +110,7 @@
 			var count = 0;
 			this.myDataBinding.data.forEach(row =>{
 			  arr[count] =  row;
-		          count = count + 1;
+		          count++;
 			} );
 			
 			console.log("Trace 7");
