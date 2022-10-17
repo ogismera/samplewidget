@@ -107,8 +107,10 @@
 			console.log("Trace 3");
 			console.log(typeof datas);
 			var arr ;
+			var count = 0;
 			this.myDataBinding.data.forEach(row =>{
-			  arr =  row;
+			  arr[count] =  row;
+		          count = count + 1;
 			} );
 			
 			console.log("Trace 7");
@@ -116,11 +118,13 @@
 			
 			var newArray = [];
 			var newArray2 = [];
-			
+			const obj3 = [];
+			count = 0
                         debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
-    				newArray.push("Hola" + {'id': k, 'value': arr[k]});
+    				obj3 [count] = JSON.stringify(newArray2);
+				count = count + 1;
 				}
 			
 			
