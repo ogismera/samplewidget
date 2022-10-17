@@ -116,34 +116,25 @@
 			console.log("Trace 7");
 			console.log(arr);
 			
-			var newArray = [];
 			var newArray2 = [];
 			const obj3 = [];
+			const obj4 = [];
 			count = 0
                         debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
     				obj3 [count] = JSON.stringify(newArray2);
+				obj4 [count]= "Row" + obj3;
 				count = count + 1;
 				}
 			
 			 debugger;
-                        console.log("Trace 8");
-			console.log(newArray);
-			
-			const obj3 = JSON.stringify(newArray2);
-			const obj4 = "Hola" + obj3;
-			
+                        console.log("Trace 8");		
 			console.log("Trace 9");
-			
-			console.log(arr);
-			console.log(typeof arr);
-			this.Arria_Call2(datas);
+                        this.Arria_Call2(datas);
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			const obj5 = JSON.parse(obj4);
-			console.log(obj5);
 			
 		}
 	}
