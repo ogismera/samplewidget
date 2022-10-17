@@ -114,7 +114,7 @@
 			console.log("Trace 7");
 			
 			var newArray = [];
-			var k = 0;
+			
 
                         for (let k in arr) {
     				newArray.push('Hello' +  {'id': k, 'value': arr[k]});
