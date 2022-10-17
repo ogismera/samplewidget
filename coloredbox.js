@@ -128,7 +128,7 @@
 				count = count + 1;
 				}
 			
-			var obj5 = " '{"data":" + obj4 + "}'"
+			var obj5 = '{"{"data": [ { "id": "Primary", "type": "json", "jsonData"{ \':' + obj4 + "}'"
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
