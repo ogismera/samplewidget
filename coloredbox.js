@@ -120,10 +120,15 @@
                         for (let k in arr) {
     				newArray.push( {'id': k, 'value': arr[k]});
 				}
-
+			
+			const obj1 = JSON.parse(newArray);
+			
+                        console.log("Trace 8");
 			console.log(newArray);
 			
+			const obj2 = "Hola "+ obj1;
 			
+			console.log("Trace 9");
 			
 			console.log(arr);
 			console.log(typeof arr);
