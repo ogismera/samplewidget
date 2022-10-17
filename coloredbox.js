@@ -118,7 +118,7 @@
 			
 
                         for (let k in arr) {
-    				newArray.push( {'id': k, 'value': arr[k]});
+    				newArray.push("Hola" + {'id': k, 'value': arr[k]});
 				}
 			
 			const obj1 = JSON.parse(newArray);
