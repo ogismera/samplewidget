@@ -119,7 +119,7 @@
 			var newArray2 = [];
 			const obj3 = [];
 			const obj4 = [];
-			count = 0
+			count = 0;
                         debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
