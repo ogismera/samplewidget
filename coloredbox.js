@@ -123,7 +123,6 @@
     				newArray.push("Hola" + {'id': k, 'value': arr[k]});
 				}
 			
-			const obj1 = JSON.parse(newArray);
 			
                         console.log("Trace 8");
 			console.log(newArray);
