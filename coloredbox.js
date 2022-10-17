@@ -117,7 +117,7 @@
 			var newArray = [];
 			var newArray2 = [];
 			
-
+                        debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
     				newArray.push("Hola" + {'id': k, 'value': arr[k]});
