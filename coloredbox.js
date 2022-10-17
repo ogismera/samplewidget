@@ -112,7 +112,9 @@
 			} );
 			
 			console.log("Trace 7");
+			
 			var newArray = [];
+			var k = 0;
 
                         for (let k in arr) {
     				newArray.push('Dimensions_0' {'id': k, 'value': arr[k]});
