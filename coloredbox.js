@@ -128,7 +128,7 @@
 			console.log(newArray);
 			
 			const obj3 = JSON.stringify(newArray2);
-			const obj2 = "Hola "+ obj1;
+			
 			
 			console.log("Trace 9");
 			
