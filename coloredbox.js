@@ -107,13 +107,7 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 			
-			var _text =  "HI";
-		        this.dispatchEvent(new CustomEvent("propertiesChanged", {
- 			detail: {
-			properties: {
-			 text: this._text
-			 }
-			 }}));
+	
 			
 		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
