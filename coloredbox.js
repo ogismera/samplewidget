@@ -127,6 +127,9 @@
 				if (count > 0) {
    				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
   					} 
+				   else {
+			            obj4 [count]= obj3[count];
+				   }
 				count = count + 1;
 				newArray2.shift();
 				}
