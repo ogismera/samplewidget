@@ -129,7 +129,7 @@
 				newArray2.shift();
 				}
 			
-			var obj5 = '\'{"{"data": [ { "id": "Primary", "type": "json",' + obj4 + "}'"
+			var obj5 = '\'{"{"data": [ { "id": "Primary", "type": "json",' + obj4 + "}]}'"
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
