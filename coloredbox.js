@@ -96,7 +96,7 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 			
-			this._text = "Hola";
+			text = "Hola";
 			
 		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
