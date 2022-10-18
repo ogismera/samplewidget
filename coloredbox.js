@@ -106,7 +106,7 @@
 			if ("opacity" in changedProperties) {
 				this.style["opacity"] = changedProperties["opacity"];
 			}
-			
+			this.$text = changedProperties["value"];
 			
 		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
