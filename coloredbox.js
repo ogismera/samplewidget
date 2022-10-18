@@ -87,7 +87,7 @@
 			properties: {
 			 text: this._text
 			 }
-			 }));
+			 }}));
 			 }
 
 
