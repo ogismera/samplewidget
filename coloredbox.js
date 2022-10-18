@@ -145,6 +145,7 @@
 
 
 	}
+	}
 
 	customElements.define("com-sap-sample-coloredbox", ColoredBox);
 })();
