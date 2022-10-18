@@ -107,10 +107,11 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 			
+			var _text =  "HI";
 		        this.dispatchEvent(new CustomEvent("propertiesChanged", {
  			detail: {
 			properties: {
-			 text: "HI"
+			 text: this._text
 			 }
 			 }}));
 			
@@ -159,7 +160,7 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			setText("Hola");
+			
 
 
 	}
