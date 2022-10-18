@@ -126,10 +126,10 @@
     				obj3 [count] = JSON.stringify(newArray2);
 				obj4 [count]= '"Row' + count + '": ' + obj3;
 				count = count + 1;
-				
+				newArray2.shift();
 				}
 			
-			var obj5 = '\'{"{"data": [ { "id": "Primary", "type": "json", "jsonData"{:' + obj4[count] + "}'"
+			var obj5 = '\'{"{"data": [ { "id": "Primary", "type": "json", "jsonData"{:' + obj4 + "}'"
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
