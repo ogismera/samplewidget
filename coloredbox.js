@@ -155,14 +155,14 @@
 			console.log(obj3);
 			console.log(obj4);
 			 var _text;
-                         setText(newText) {
+                         setText("hola") {
                              this._text = newText;
 
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
                                  properties: {
                           text: this._text
-                           }
+                           }}
                            }));
                                 }
                                getText() {
