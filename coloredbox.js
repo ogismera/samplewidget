@@ -80,6 +80,15 @@
 
                }
                
+                setText(newText) {
+ 			this._text = newText;
+			this.dispatchEvent(new CustomEvent("propertiesChanged", {
+ 			detail: {
+			properties: {
+			 text: this._text
+			 }
+			 }));
+			 }
 
 
 		onCustomWidgetBeforeUpdate(changedProperties) {
@@ -88,6 +97,8 @@
 
 		onCustomWidgetAfterUpdate(changedProperties) {
 
+			
+			
                         this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
@@ -142,6 +153,7 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
+			setText("Hola");
 
 
 	}
