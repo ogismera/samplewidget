@@ -69,8 +69,8 @@
    		if (xhr.readyState === 4 ) {
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
-			 var Text_string = xhr.responseText;
-
+			 return xhr.responseText;
+                      
   			 }};
 
 
@@ -84,7 +84,7 @@
                
                setText(newText) {
 		           var _text = "Hola";
-                             this._text = "Hola1";
+                             this._text = newText";
 
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
@@ -158,12 +158,12 @@
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
-                        this.Arria_Call2(obj5);
-			console.log("Trace 10");
+                        var Text = this.Arria_Call2(obj5);
+			console.log(Text);
 			console.log(obj3);
 			console.log(obj4);
-			this.setText("Hola5");
-			this.getText("Hola4");
+			this.setText(Text);
+			this.getText(Text);
 			
 			
 			
