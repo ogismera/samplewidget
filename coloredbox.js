@@ -69,7 +69,8 @@
    		if (xhr.readyState === 4 ) {
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
-			 return xhr.responseText;
+			 var text = xhr.responseText; 
+			 return text;
                       
   			 }};
 
