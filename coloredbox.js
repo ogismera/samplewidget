@@ -87,7 +87,7 @@
                setText(text) {
 		           var _text = "Hola";
                              this._text = text;
-
+                          debugger;
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
                                  properties: {
@@ -96,6 +96,7 @@
                            }));
                                 }
                 getText(text) {
+			       debugger;
 			       var _text = text;
                                return this._text;
                            }
