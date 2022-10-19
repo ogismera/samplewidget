@@ -163,8 +163,8 @@
                         var Text = this.Arria_Call2(obj5);
 			console.log(Text);
 			console.log(obj3);
-			debugger;
 			console.log(obj4);
+			debugger;
 			this.setText(Text);
 			this.getText(Text);
 			
