@@ -80,15 +80,19 @@
 
                }
                
-                setText(newText) {
- 			this._text = newText;
-			this.dispatchEvent(new CustomEvent("propertiesChanged", {
- 			detail: {
-			properties: {
-			 text: this._text
-			 }
-			 }}));
-			 }
+               setText(newText) {
+                             this._text = "Hola";
+
+                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                          detail: {
+                                 properties: {
+                          text: this._text
+                           }}
+                           }));
+                                }
+                getText() {
+                               return this._text;
+                           }
 
 
 		onCustomWidgetBeforeUpdate(changedProperties) {
@@ -155,19 +159,9 @@
 			console.log(obj3);
 			console.log(obj4);
 			 var _text;
-                         setText(newText) {
-                             this._text = "Hola";
-
-                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                          detail: {
-                                 properties: {
-                          text: this._text
-                           }}
-                           }));
-                                }
-                               getText() {
-                               return this._text;
-                           }			
+			this.setText("Hola");
+			this.getText();
+			
 
 
 	}
