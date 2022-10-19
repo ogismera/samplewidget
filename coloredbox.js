@@ -162,8 +162,8 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			setText("Hola4");
-			getText("Hola5");
+			this.etText("Hola4");
+			this.getText("Hola5");
 			
 			
 			
