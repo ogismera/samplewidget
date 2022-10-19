@@ -165,6 +165,8 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
+			setText(newText);
+			getText(newTexts);
 			
 			
 			
