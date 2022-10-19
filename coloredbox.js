@@ -69,8 +69,11 @@
    		if (xhr.readyState === 4 ) {
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
-			 this.setText(xhr.responseText);
-			 this.getText(xhr.responseText);
+			 var Text_string = xhr.responseText;
+			 Text_string = Text_string.toString (8);
+			
+			 this.setText(Text_string);
+			 this.getText(Text_string);
   			 }};
 
 
