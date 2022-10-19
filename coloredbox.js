@@ -162,7 +162,7 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			this.etText("Hola4");
+			this.getText("Hola4");
 			this.getText("Hola5");
 			
 			
