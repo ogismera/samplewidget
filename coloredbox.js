@@ -49,7 +49,7 @@
 
 		xhr.send(data);
 		     
-		       
+               var text;		       
 
                }
 
@@ -70,7 +70,7 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			debugger;
-			 var text = xhr.responseText; 
+			 text = xhr.responseText; 
 			 return text;
                       
   			 }};
@@ -84,9 +84,9 @@
 
                }
                
-               setText(newText) {
+               setText(text) {
 		           var _text = "Hola";
-                             this._text = newText;
+                             this._text = text;
 
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
@@ -95,8 +95,8 @@
                            }}
                            }));
                                 }
-                getText(newTexts) {
-			       var _text = "Hola2";
+                getText(text) {
+			       var _text = text;
                                return this._text;
                            }
 
