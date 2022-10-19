@@ -69,6 +69,7 @@
    		if (xhr.readyState === 4 ) {
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
+			 this.setText(xhr.responseText);
 			 this.getText(xhr.responseText);
   			 }};
 
@@ -161,8 +162,7 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			 var _text = "Hola";
-			this.setText("Hola");
+			
 			
 			
 
