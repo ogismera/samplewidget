@@ -70,10 +70,7 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			 var Text_string = xhr.responseText;
-			 Text_string = Text_string.toString (8);
-			
-			 this.setText(Text_string);
-			 this.getText(Text_string);
+
   			 }};
 
 
@@ -165,8 +162,8 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			setText(newText);
-			getText(newTexts);
+			setText("Hola4");
+			getText("Hola5");
 			
 			
 			
