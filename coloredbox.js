@@ -53,7 +53,7 @@
 
                }
 
-		function Arria_Call2(obj5){
+		Arria_Call2(obj5){
                  console.log("Trace 5");
 		 console.log(obj5);
 		var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OKol2ZMrBg9";
