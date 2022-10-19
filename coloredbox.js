@@ -69,6 +69,7 @@
    		if (xhr.readyState === 4 ) {
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
+			 this.getText(xhr.responseText);
   			 }};
 
 
@@ -91,8 +92,8 @@
                            }}
                            }));
                                 }
-                getText() {
-			       var _text = "Hola";
+                getText(newTexts) {
+			       var _text = newTexts;
                                return this._text;
                            }
 
@@ -162,7 +163,7 @@
 			console.log(obj4);
 			 var _text = "Hola";
 			this.setText("Hola");
-			this.getText();
+			
 			
 
 
