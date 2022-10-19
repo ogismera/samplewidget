@@ -13,7 +13,7 @@
 	`;
 
 	class ColoredBox extends HTMLElement {
-        
+           
 		constructor() {
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
@@ -81,6 +81,7 @@
                }
                
                setText(newText) {
+		           var _text = "Hola";
                              this._text = "Hola";
 
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
@@ -91,6 +92,7 @@
                            }));
                                 }
                 getText() {
+			       var _text = "Hola";
                                return this._text;
                            }
 
@@ -158,7 +160,7 @@
 			console.log("Trace 10");
 			console.log(obj3);
 			console.log(obj4);
-			 var _text;
+			 var _text = "Hola";
 			this.setText("Hola");
 			this.getText();
 			
