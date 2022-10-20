@@ -71,10 +71,7 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			debugger;
-			 var text = xhr.responseText;
-			this.setText(text);
-			this.getText(text);
-			
+			 var text = xhr.responseText;			
 			 return text;
                       
   			 }};
