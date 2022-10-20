@@ -97,7 +97,7 @@
                            }}
                            }));
                                 }
-                getText(text) {
+                getText() {
                            setTimeout(function () {console.log(text);}, 1000);
 			       debugger;
 			       var _text = text;
