@@ -86,43 +86,8 @@
                }
                
                setText(text) {
-		           var _text = "Hola";
-                             this._text = text;
-                          debugger;
-                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                          detail: {
-                                 properties: {
-                          text: this._text
-                           }}
-                           }));
-                                }
-                getText(text) {
-			       debugger;
-			       var _text = text;
-                               return this._text;
-                           }
-
-                
-		onCustomWidgetBeforeUpdate(changedProperties) {
-			this._props = { ...this._props, ...changedProperties };
-			
-			
-		}
-
-		onCustomWidgetAfterUpdate(changedProperties) {
-
-			
-			
-                        this.Arria_Call();
-			if ("color" in changedProperties) {
-				this.style["background-color"] = changedProperties["color"];
-			}
-			if ("opacity" in changedProperties) {
-				this.style["opacity"] = changedProperties["opacity"];
-			}
-			
-			
-			 const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+		       
+		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
                         console.log(dataBinding);
 			console.log("Trace ");
@@ -162,7 +127,44 @@
 			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
 			 debugger;
                         console.log("Trace 8");		
-			Text = this.Arria_Call2(obj5);
+			var Text = this.Arria_Call2(obj5);
+		           var _text = "Hola";
+                             this._text = Text;
+                          debugger;
+                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                          detail: {
+                                 properties: {
+                          text: this._text
+                           }}
+                           }));
+                                }
+                getText(text) {
+			       debugger;
+			       var _text = text;
+                               return this._text;
+                           }
+
+                
+		onCustomWidgetBeforeUpdate(changedProperties) {
+			this._props = { ...this._props, ...changedProperties };
+			
+			
+		}
+
+		onCustomWidgetAfterUpdate(changedProperties) {
+
+			
+			
+                        this.Arria_Call();
+			if ("color" in changedProperties) {
+				this.style["background-color"] = changedProperties["color"];
+			}
+			if ("opacity" in changedProperties) {
+				this.style["opacity"] = changedProperties["opacity"];
+			}
+			
+			
+			
                         
 			console.log(Text);
 			console.log(obj3);
