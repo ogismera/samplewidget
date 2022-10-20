@@ -1,5 +1,6 @@
 (function() { 
 	var text;
+	var obj5;
 	let template = document.createElement("template");
 	template.innerHTML = `
 		<style>
@@ -88,7 +89,7 @@
                }
                
                setText(text) {
-		       
+		      
 		           var _text = "Hola";
                              this._text = text;
                           debugger;
@@ -101,40 +102,8 @@
                                 }
                 getText(text) {
                          
-			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-                        console.log(dataBinding);
-                        console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data;
-			var arr = [];
-			var count = 0;
-			this.myDataBinding.data.forEach(row =>{
-			  arr[count] =  row;
-		          count++;
-			} );
-			var newArray2 = [];
-			const obj3 = [];
-			const obj4 = [];
-			count = 0;
-                        debugger;
-
 			
-                        for (let k in arr) {
-				newArray2.push({'id': k, 'value': arr[k]});
-    				obj3 [count] = JSON.stringify(arr[k]);
-				if (count > 0) {
-   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
-  					} 
-				   else {
-			            obj4 [count]= obj3[count];
-				   }
-				count = count + 1;
-				newArray2.shift();
-				}
-			
-			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
-			 debugger;
-			this.Arria_Call2(obj5);
-			
+			       this.Arria_Call2(obj5);
 			       debugger;
 			       var _text = text;
                                return this._text;
@@ -178,11 +147,6 @@
 		xhr.send(data);
 			
 			
-			
-
-			
-			
-
 			debugger;
 
 			if ("color" in changedProperties) {
@@ -192,6 +156,39 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 			
+			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+                        console.log(dataBinding);
+                        console.log(this.myDataBinding.data);
+			var datas = this.myDataBinding.data;
+			var arr = [];
+			var count = 0;
+			this.myDataBinding.data.forEach(row =>{
+			  arr[count] =  row;
+		          count++;
+			} );
+			var newArray2 = [];
+			const obj3 = [];
+			const obj4 = [];
+			count = 0;
+                        debugger;
+
+			
+                        for (let k in arr) {
+				newArray2.push({'id': k, 'value': arr[k]});
+    				obj3 [count] = JSON.stringify(arr[k]);
+				if (count > 0) {
+   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
+  					} 
+				   else {
+			            obj4 [count]= obj3[count];
+				   }
+				count = count + 1;
+				newArray2.shift();
+				}
+			
+			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
+			 debugger;
+			this.Arria_Call2(obj5);
 		       
 			this.setText(text);
 			this.getText(text);
