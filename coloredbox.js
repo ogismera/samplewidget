@@ -147,6 +147,7 @@
 				}
 			
 			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
+			console.log(obj5);
 			this.Arria_Call2(obj5);
 			this.setText(text);
 			this.getText(text);
