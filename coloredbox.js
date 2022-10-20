@@ -18,9 +18,15 @@
 		 
 		constructor() {		
 			super(); 
-			
-			
-			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+						
+			let shadowRoot = this.attachShadow({mode: "open"});
+			shadowRoot.appendChild(template.content.cloneNode(true));
+			this.addEventListener("click", event => {
+				var event = new Event("onClick");
+				this.dispatchEvent(event);
+			});
+			this._props = {};
+						const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
                         console.log(dataBinding);
 			console.log("Trace ");
                         console.log(this.myDataBinding.data);
@@ -60,15 +66,6 @@
 			this.Arria_Call2(obj5);
 
 			debugger;
-			
-			
-			let shadowRoot = this.attachShadow({mode: "open"});
-			shadowRoot.appendChild(template.content.cloneNode(true));
-			this.addEventListener("click", event => {
-				var event = new Event("onClick");
-				this.dispatchEvent(event);
-			});
-			this._props = {};
 		}
 
                Arria_Call(){
