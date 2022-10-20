@@ -101,7 +101,6 @@
                 getText(text) {
                          
 			
-			       this.Arria_Call2(obj5);
 			       debugger;
 			       var _text = text;
                                return this._text;
