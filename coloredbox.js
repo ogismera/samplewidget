@@ -26,6 +26,26 @@
 				this.dispatchEvent(event);
 			});
 			this._props = {};
+			
+			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+                        console.log(dataBinding);
+                        console.log(this.myDataBinding.data);
+			var datas = this.myDataBinding.data;
+			var arr = [];
+			var count = 0;
+			this.myDataBinding.data.forEach(row =>{
+			  arr[count] =  row;
+		          count++;
+			} );
+			
+			console.log("Trace 7");
+			console.log(arr);
+			
+			var newArray2 = [];
+			const obj3 = [];
+			const obj4 = [];
+			count = 0;
+                        debugger;
 		        
 		}
 
@@ -113,25 +133,7 @@
 
 		onCustomWidgetAfterUpdate(changedProperties) {
 
-			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-                        console.log(dataBinding);
-                        console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data;
-			var arr = [];
-			var count = 0;
-			this.myDataBinding.data.forEach(row =>{
-			  arr[count] =  row;
-		          count++;
-			} );
 			
-			console.log("Trace 7");
-			console.log(arr);
-			
-			var newArray2 = [];
-			const obj3 = [];
-			const obj4 = [];
-			count = 0;
-                        debugger;
                         for (let k in arr) {
 				newArray2.push({'id': k, 'value': arr[k]});
     				obj3 [count] = JSON.stringify(arr[k]);
