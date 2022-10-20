@@ -149,7 +149,7 @@
 			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
 			 debugger;
                         console.log("Trace 8");		
-			this.Arria_Call2(obj5);
+			Text = this.Arria_Call2(obj5);
                         
 			console.log(Text);
 			console.log(obj3);
