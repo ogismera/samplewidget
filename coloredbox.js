@@ -50,7 +50,7 @@
 		xhr.send(data);
 		     
                
-	       var Text;
+	       var text;
 
                }
 
@@ -126,10 +126,32 @@
 			
 			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
 			 debugger;
-                        console.log("Trace 8");		
-			var Text = this.Arria_Call2(obj5);
+                        console.log("Trace 8");	
+		       
+		       		var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OKol2ZMrBg9";
+
+		                  var xhr = new XMLHttpRequest();
+
+		xhr.open("POST", url,true);
+
+		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJJV0dDSDQwQkNrMWpacHFrRm9HNElzUG8iLCJpYXQiOjE2NjU5OTgxOTcsImV4cCI6MTgyMzY3ODE5NywiaXNzIjoiQUxpdGUiLCJzdWIiOiJOTXhaQjJRRmd5Y28iLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9Lb2wyWk1yQmc5Il0sIkFMaXRlLnR0IjoidV9hIn0.Wb-T9f90P7ZqAFPDAcIgXcsN1-xQo267VyOpPxl9OwUKTXqiL0r1g4wIbYJYwoF6708yGcjoDHRytLnR7OG_xQ");
+
+		xhr.onreadystatechange = function () {
+   		       if (xhr.readyState === 4 ) {
+     		 	    console.log(xhr.status);
+     			    console.log(xhr.responseText);
+			    debugger;
+			    text = xhr.responseText;			
+                      
+  			 }};
+
+
+		        var data = obj5;
+
+		        xhr.send(data);
 		           var _text = "Hola";
-                             this._text = Text;
+                             this._text = text;
                           debugger;
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
