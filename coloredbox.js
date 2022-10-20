@@ -71,7 +71,10 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			debugger;
-			 text = xhr.responseText; 
+			 text = xhr.responseText;
+			this.setText(text);
+			this.getText(text);
+			
 			 return text;
                       
   			 }};
@@ -107,7 +110,22 @@
 			this._props = { ...this._props, ...changedProperties };
 			
 			
-			console.log(" Q Trace 12");
+		}
+
+		onCustomWidgetAfterUpdate(changedProperties) {
+
+			
+			
+                        this.Arria_Call();
+			if ("color" in changedProperties) {
+				this.style["background-color"] = changedProperties["color"];
+			}
+			if ("opacity" in changedProperties) {
+				this.style["opacity"] = changedProperties["opacity"];
+			}
+			
+	
+						console.log(" Q Trace 12");
 			
 			 const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
@@ -155,31 +173,11 @@
 			console.log(obj3);
 			console.log(obj4);
 			debugger;
-			
-		}
-
-		onCustomWidgetAfterUpdate(changedProperties) {
-
-			
-			
-                        this.Arria_Call();
-			if ("color" in changedProperties) {
-				this.style["background-color"] = changedProperties["color"];
-			}
-			if ("opacity" in changedProperties) {
-				this.style["opacity"] = changedProperties["opacity"];
-			}
-			
-	
-			
 		       
 			this.setText(Text);
 			this.getText(Text);
 			
-			
-			
-			
-			
+				
 
 
 	}
