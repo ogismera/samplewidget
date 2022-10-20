@@ -161,8 +161,8 @@
 			}
 			
 		       
-			this.setText(Text);
-			this.getText(Text);
+			this.setText(text);
+			this.getText(text);
 			
 				
 
