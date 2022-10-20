@@ -100,7 +100,6 @@
                                 }
                 getText(text) {
                          
-			setTimeout(function () {console.log(text);}, 1000);
 			       debugger;
 			       var _text = text;
                                return this._text;
