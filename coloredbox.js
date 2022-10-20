@@ -49,7 +49,8 @@
 
 		xhr.send(data);
 		     
-               var text;		       
+               var text;
+	       var Text;
 
                }
 
@@ -101,9 +102,10 @@
                                return this._text;
                            }
 
-
+                
 		onCustomWidgetBeforeUpdate(changedProperties) {
 			this._props = { ...this._props, ...changedProperties };
+			Text = this.Arria_Call2(obj5);
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
@@ -161,7 +163,7 @@
 			 debugger;
                         console.log("Trace 8");		
 			console.log("Trace 9");
-                        var Text = this.Arria_Call2(obj5);
+                        
 			console.log(Text);
 			console.log(obj3);
 			console.log(obj4);
