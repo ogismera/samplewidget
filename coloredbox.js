@@ -26,46 +26,7 @@
 				this.dispatchEvent(event);
 			});
 			this._props = {};
-						const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-                        console.log(dataBinding);
-			console.log("Trace ");
-                        console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data;
-			var arr = [];
-			var count = 0;
-			this.myDataBinding.data.forEach(row =>{
-			  arr[count] =  row;
-		          count++;
-			} );
-			
-			console.log("Trace 7");
-			console.log(arr);
-			
-			var newArray2 = [];
-			const obj3 = [];
-			const obj4 = [];
-			count = 0;
-                        debugger;
-                        for (let k in arr) {
-				newArray2.push({'id': k, 'value': arr[k]});
-    				obj3 [count] = JSON.stringify(arr[k]);
-				if (count > 0) {
-   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
-  					} 
-				   else {
-			            obj4 [count]= obj3[count];
-				   }
-				count = count + 1;
-				newArray2.shift();
-				}
-			
-			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
-			 debugger;
-                        console.log("Trace 8");	
-			
-			this.Arria_Call2(obj5);
-
-			debugger;
+		        
 		}
 
                Arria_Call(){
@@ -152,9 +113,46 @@
 
 		onCustomWidgetAfterUpdate(changedProperties) {
 
+			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+                        console.log(dataBinding);
+                        console.log(this.myDataBinding.data);
+			var datas = this.myDataBinding.data;
+			var arr = [];
+			var count = 0;
+			this.myDataBinding.data.forEach(row =>{
+			  arr[count] =  row;
+		          count++;
+			} );
 			
+			console.log("Trace 7");
+			console.log(arr);
 			
-                        this.Arria_Call();
+			var newArray2 = [];
+			const obj3 = [];
+			const obj4 = [];
+			count = 0;
+                        debugger;
+                        for (let k in arr) {
+				newArray2.push({'id': k, 'value': arr[k]});
+    				obj3 [count] = JSON.stringify(arr[k]);
+				if (count > 0) {
+   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
+  					} 
+				   else {
+			            obj4 [count]= obj3[count];
+				   }
+				count = count + 1;
+				newArray2.shift();
+				}
+			
+			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
+			 debugger;
+                        console.log("Trace 8");	
+			
+			this.Arria_Call2(obj5);
+
+			debugger;
+
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
