@@ -71,7 +71,7 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			debugger;
-			 var text = xhr.responseText;			
+			 text = xhr.responseText;			
 			 return text;
                       
   			 }};
@@ -98,70 +98,7 @@
                            }));
                                 }
                 getText(text) {
-			 const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-			console.log("Hola");
-                        console.log(dataBinding);
-			console.log("Trace ");
-                        console.log(this.myDataBinding.data);
-			var datas = this.myDataBinding.data;
-			console.log("Trace 2");
-			console.log("Trace 3");
-			console.log(typeof datas);
-			var arr = [];
-			var count = 0;
-			this.myDataBinding.data.forEach(row =>{
-			  arr[count] =  row;
-		          count++;
-			} );
-			
-			console.log("Trace 7");
-			console.log(arr);
-			
-			var newArray2 = [];
-			const obj3 = [];
-			const obj4 = [];
-			count = 0;
-                        debugger;
-                        for (let k in arr) {
-				newArray2.push({'id': k, 'value': arr[k]});
-    				obj3 [count] = JSON.stringify(arr[k]);
-				if (count > 0) {
-   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
-  					} 
-				   else {
-			            obj4 [count]= obj3[count];
-				   }
-				count = count + 1;
-				newArray2.shift();
-				}
-			
-			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
-			 debugger;
-                        console.log("Trace 8");	
-		       
-		       		var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OKol2ZMrBg9";
 
-		                  var xhr = new XMLHttpRequest();
-
-		xhr.open("POST", url,true);
-
-		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
-		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJJV0dDSDQwQkNrMWpacHFrRm9HNElzUG8iLCJpYXQiOjE2NjU5OTgxOTcsImV4cCI6MTgyMzY3ODE5NywiaXNzIjoiQUxpdGUiLCJzdWIiOiJOTXhaQjJRRmd5Y28iLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9Lb2wyWk1yQmc5Il0sIkFMaXRlLnR0IjoidV9hIn0.Wb-T9f90P7ZqAFPDAcIgXcsN1-xQo267VyOpPxl9OwUKTXqiL0r1g4wIbYJYwoF6708yGcjoDHRytLnR7OG_xQ");
-
-		xhr.onreadystatechange = function () {
-   		       if (xhr.readyState === 4 ) {
-     		 	    console.log(xhr.status);
-     			    console.log(xhr.responseText);
-			    debugger;
-			    text = xhr.responseText;			
-                      
-  			 }};
-
-
-		        var data = obj5;
-
-		        xhr.send(data);
-			
 			       debugger;
 			       var _text = text;
                                return this._text;
