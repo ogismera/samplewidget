@@ -87,7 +87,18 @@
                
                setText(text) {
 		       
-		        const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
+		           var _text = "Hola";
+                             this._text = text;
+                          debugger;
+                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                          detail: {
+                                 properties: {
+                          text: this._text
+                           }}
+                           }));
+                                }
+                getText(text) {
+			 const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
                         console.log(dataBinding);
 			console.log("Trace ");
@@ -150,17 +161,7 @@
 		        var data = obj5;
 
 		        xhr.send(data);
-		           var _text = "Hola";
-                             this._text = text;
-                          debugger;
-                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                          detail: {
-                                 properties: {
-                          text: this._text
-                           }}
-                           }));
-                                }
-                getText(text) {
+			
 			       debugger;
 			       var _text = text;
                                return this._text;
