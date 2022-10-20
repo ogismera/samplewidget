@@ -121,8 +121,6 @@
 				this.style["opacity"] = changedProperties["opacity"];
 			}
 			
-	
-						console.log(" Q Trace 12");
 			
 			 const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
 			console.log("Hola");
