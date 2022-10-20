@@ -100,21 +100,7 @@
                            }));
                                 }
                 getText(text) {
-
-			       debugger;
-			       var _text = text;
-                               return this._text;
-                           }
-
-                
-		onCustomWidgetBeforeUpdate(changedProperties) {
-			this._props = { ...this._props, ...changedProperties };
-			
-			
-		}
-
-		onCustomWidgetAfterUpdate(changedProperties) {
-			
+                         
 			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
                         console.log(dataBinding);
                         console.log(this.myDataBinding.data);
@@ -125,10 +111,6 @@
 			  arr[count] =  row;
 		          count++;
 			} );
-			
-			console.log("Trace 7");
-			console.log(arr);
-			
 			var newArray2 = [];
 			const obj3 = [];
 			const obj4 = [];
@@ -151,15 +133,25 @@
 			
 			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
 			 debugger;
-                        console.log("Trace 8");	
-			
 			this.Arria_Call2(obj5);
 			
+			       debugger;
+			       var _text = text;
+                               return this._text;
+                           }
+
+                
+		onCustomWidgetBeforeUpdate(changedProperties) {
+			this._props = { ...this._props, ...changedProperties };
+			
+			
+		}
+
+		onCustomWidgetAfterUpdate(changedProperties) {
 			
 			
 			
-			
-			
+
 			      console.log("Trace 5");
 		 console.log(obj5);
 		var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OKol2ZMrBg9";
