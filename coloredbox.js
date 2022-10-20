@@ -87,7 +87,7 @@
                }
                
                setText(text) {
-		      
+		      setTimeout(function () {console.log(text);}, 1000);
 		           var _text = "Hola";
                              this._text = text;
                           debugger;
