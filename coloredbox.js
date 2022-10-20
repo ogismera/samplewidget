@@ -72,8 +72,7 @@
      			 console.log(xhr.responseText);
 			debugger;
 			 text = xhr.responseText;			
-			 return text;
-                      
+               
   			 }};
 
 
