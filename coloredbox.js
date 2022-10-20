@@ -105,13 +105,13 @@
                 
 		onCustomWidgetBeforeUpdate(changedProperties) {
 			this._props = { ...this._props, ...changedProperties };
-			Text = this.Arria_Call2(obj5);
+			
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
 
 			
-			
+			Text = this.Arria_Call2(obj5);
                         this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
