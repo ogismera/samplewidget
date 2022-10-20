@@ -49,7 +49,7 @@
 
 		xhr.send(data);
 		     
-               var text;
+               
 	       var Text;
 
                }
@@ -71,7 +71,7 @@
      		 	  console.log(xhr.status);
      			 console.log(xhr.responseText);
 			debugger;
-			 text = xhr.responseText;
+			 var text = xhr.responseText;
 			this.setText(text);
 			this.getText(text);
 			
