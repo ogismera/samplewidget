@@ -106,12 +106,15 @@
 		onCustomWidgetBeforeUpdate(changedProperties) {
 			this._props = { ...this._props, ...changedProperties };
 			
+			
+			console.log(" Q Trace 12");
+			
 		}
 
 		onCustomWidgetAfterUpdate(changedProperties) {
 
 			
-			Text = this.Arria_Call2(obj5);
+			
                         this.Arria_Call();
 			if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
@@ -162,7 +165,7 @@
 			var obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":' + obj4 + "}]}";
 			 debugger;
                         console.log("Trace 8");		
-			console.log("Trace 9");
+			this.Arria_Call2(obj5);
                         
 			console.log(Text);
 			console.log(obj3);
