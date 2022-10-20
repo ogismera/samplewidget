@@ -166,9 +166,6 @@
 			
 			
                         
-			console.log(Text);
-			console.log(obj3);
-			console.log(obj4);
 			debugger;
 		       
 			this.setText(Text);
