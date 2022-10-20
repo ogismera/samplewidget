@@ -76,7 +76,8 @@
 			 text = xhr.responseText;			
                
   			 }};
-
+                 this.setText(text);
+		 this.getText(text);
 
 		var data = obj5;
 
