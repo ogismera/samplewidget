@@ -40,7 +40,7 @@
                  xhr.open("POST", url,true);
 
 		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
-		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJFRzk1TmxXZWEzZF9qMWJJVUtKLVZ4WXAiLCJpYXQiOjE2NjM5NDgzMTksImV4cCI6MTgyMTYyODMxOSwiaXNzIjoiQUxpdGUiLCJzdWIiOiI0QWxiZVczUm9jTzkiLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9BdllQZTF5OWdBIl0sIkFMaXRlLnR0IjoidV9hIn0.2tLNExg_aACT8vQjZjcFdRxg0TbQ6Gw12c2jwigGnWjFDC1rJnfArU3Dht0FYcklKFeSWxhZ37k3E138TKVP3g");
+		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNT1RJUm1FTDdLVHhJcmFod24wUzVrX1QiLCJpYXQiOjE2NjYzMzMwMjgsImV4cCI6MTgyNDAxMzAyOCwiaXNzIjoiQUxpdGUiLCJzdWIiOiJ4NHJ6eV83ZWpBSFoiLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9Lb2wyWk1yQmc5Il0sIkFMaXRlLnR0IjoidV9hIn0.D2hzLSoakfAqFJpBerBKBSHfO57_Yw0z8J6AYaN3yHpnsOlrGRIhI9f1Iar8C3pTQJWqSqaEFaFba-LJuQv7lg");
 
 		xhr.onreadystatechange = function () {
    			if (xhr.readyState === 4 ) {
