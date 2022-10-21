@@ -148,7 +148,7 @@
 				newArray2.shift();
 				}
 			
-			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":{"data":[{"id":"Primary","type":"json","jsonData":' + obj4 + '}}}]}}],"projectArguments":null,"options":null}';
+			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":{"data":[{"id":"Primary","type":"json","jsonData":' + obj4 + '}]}}],"projectArguments":null,"options":null}';
 			console.log(obj5);
 			this.Arria_Call2(obj5);
 			this.setText(text);
