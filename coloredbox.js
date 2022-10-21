@@ -88,7 +88,8 @@
                setText(text) {
 		      
 		           var _text = "Hola";
-                             this._text = text;
+		       var strippedHtml = text.replace(/<[^>]+>/g, '');
+                             this._text = strippedHtml;
                           debugger;
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
@@ -99,8 +100,9 @@
                                 }
                 getText() {
                            setTimeout(function () {console.log(text);}, 1000);
+			   var strippedHtml = text.replace(/<[^>]+>/g, '');
 			       debugger;
-			       var _text = text;
+			       var _text = strippedHtml;
                                return this._text;
                            }
 
