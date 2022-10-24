@@ -101,7 +101,7 @@
                 getText() {
                            setTimeout(function () {console.log(text);}, 1000);
 			       debugger;
-			       var _text = text = text.slice(31);
+			       var _text = text.slice(31);
                                return this._text;
                            }
 
