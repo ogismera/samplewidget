@@ -89,7 +89,7 @@
 		      
 		           var _text = "Hola";
 		           text = text.slice(31);
-                             this._text = strippedHtml;
+                             this._text = text;
                           debugger;
                           this.dispatchEvent(new CustomEvent("propertiesChanged", {
                           detail: {
