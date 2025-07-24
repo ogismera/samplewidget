@@ -1,5 +1,5 @@
 (function() { 
-	var text1;
+	var text;
 	var obj5;
 	let template = document.createElement("template");
 	template.innerHTML = `
