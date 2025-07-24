@@ -131,6 +131,6 @@ return String(v)
 .replace(/'/g, "&apos;");
 };
 
-window.customElements.define("com-oscar-text2xml", Text2Xml);
+window.customElements.define("file-upload-xl", fileuploadxl);
 
 })();
