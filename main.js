@@ -1,5 +1,5 @@
 (function () {
-
+debugger;
 var template = document.createElement("template");
 template.innerHTML =
 "<style>" +
