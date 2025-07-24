@@ -86,8 +86,32 @@
                }
                
                setText(text) {
+                       debugger;
+		       var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
+
+			var obj;
+			try { obj = JSON.parse(text); } catch (e) { obj = { value: String(text) }; }
+			var json = JSON.stringify(obj, null, 2);
+
+			try {
+				if (window.sap && sap.ui.core.util && sap.ui.core.util.File) {
+				sap.ui.core.util.File.save(json, base, "json", "application/json", "utf-8");
+			return;
+			}
+			} catch (e) {}
+
+			var blob = new Blob([json], { type: "application/json;charset=utf-8;" });
+			var url = URL.createObjectURL(blob);
+			var a = document.createElement("a");
+			a.href = url;
+			a.download = base + ".json";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
+}
 		      
-		           var _text = "Hola";
+/*		           var _text = "Hola";
 		           text = text.slice(63);
                              this._text = text;
                           debugger;
@@ -97,6 +121,7 @@
                           text: this._text
                            }}
                            }));
+*/
                                 }
                 getText() {
                            setTimeout(function () {console.log(text);}, 1000);
