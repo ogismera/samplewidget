@@ -141,7 +141,7 @@
 		onCustomWidgetAfterUpdate(changedProperties) {
 			
 
-			if ("color" in changedProperties) {
+			/*if ("color" in changedProperties) {
 				this.style["background-color"] = changedProperties["color"];
 			}
 			if ("opacity" in changedProperties) {
@@ -176,6 +176,7 @@
 			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":{"data":[{"id":"Primary","type":"json","jsonData":' + obj4 + '}]}}],"projectArguments":null,"options":null}';
 			console.log(obj5);
 			this.Arria_Call2(obj5);
+   */
 			this.setText(text);
 			this.getText(text);
 			
