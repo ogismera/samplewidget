@@ -121,8 +121,8 @@
                           text: this._text
                            }}
                            }));
-*/
-                                }
+
+*/                                }
                 getText() {
                            setTimeout(function () {console.log(text);}, 1000);
 			       debugger;
