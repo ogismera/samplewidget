@@ -124,7 +124,7 @@
                                }
 						   */ 
                 set text(_text) {
-
+                        debugger;
 	        	var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
 			var obj;
 			try { obj = JSON.parse(text); } catch (e) { obj = { value: String(text) }; }
