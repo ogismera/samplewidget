@@ -1,0 +1,23 @@
+{
+  "id": "com.oscar.jsonexporter",
+  "name": "JSON / XML Exporter",
+  "description": " JSON (string), conversion XML and download",
+  "version": "1.0.0",
+  "vendor": "Oscar",
+  "webcomponents": true,
+  "icon": "preview.png",
+  "properties": {
+    "payload":   { "type": "string", "default": "" },      
+    "format":    { "type": "string", "default": "json" },  
+    "fileName":  { "type": "string", "default": "export" }
+  },
+  "methods": [
+    "export",
+    "setPayload",
+    "setFormat",
+    "setFileName"
+  ],
+  "events": {
+    "onExported": {}
+  }
+}
