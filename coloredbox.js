@@ -88,7 +88,6 @@
                setText(text) {
                        debugger;
 		       var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
-
 			var obj;
 			try { obj = JSON.parse(text); } catch (e) { obj = { value: String(text) }; }
 			var json = JSON.stringify(obj, null, 2);
@@ -176,10 +175,10 @@
 			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":{"data":[{"id":"Primary","type":"json","jsonData":' + obj4 + '}]}}],"projectArguments":null,"options":null}';
 			console.log(obj5);
 			this.Arria_Call2(obj5);
-   */
+   
 			this.setText(text);
 			this.getText(text);
-			
+	*/		
 
 	}
 	}
