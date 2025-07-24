@@ -1,23 +1,78 @@
 {
-  "id": "com.oscar.jsonexporter",
-  "name": "JSON / XML Exporter",
-  "description": " JSON (string), conversion XML and download",
+  "id": "com.rohitchouhan.fileUploadXLS",
+  "name": "fileUploadXLS",
   "version": "1.0.0",
-  "vendor": "Oscar",
-  "webcomponents": true,
-  "icon": "preview.png",
-  "properties": {
-    "payload":   { "type": "string", "default": "" },      
-    "format":    { "type": "string", "default": "json" },  
-    "fileName":  { "type": "string", "default": "export" }
-  },
-  "methods": [
-    "export",
-    "setPayload",
-    "setFormat",
-    "setFileName"
+  "description": "A custom widget designed to work with Excel or XLS files, helping you retrieve file data in JSON, raw, and multiple other formats",
+  "newInstancePrefix": "fileUploadXLS",
+  "vendor": "rohitchouhan.com",
+  "eula": "rohitchouhan.com",
+  "license": "MIT",
+  "icon": "https:\/\/cdn.jsdelivr.net\/gh\/SAP-Custom-Widget\/fileUploadXLS@1.0.0\/icon.png",
+  "imports": [
+    "datasource",
+    "planning-model"
   ],
-  "events": {
-    "onExported": {}
-  }
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "file-upload-xls",
+      "url": "https:\/\/cdn.jsdelivr.net\/gh\/SAP-Custom-Widget\/fileUploadXLS@1.0.0\/fileUploadXLS.bundle.js",
+      "integrity": "sha256-3cwsOaW+I2jKX3zZxom+pJ7RzXoS0i6UnCM2Vst1qLM=",
+      "ignoreIntegrity": false
+    },
+    {
+      "kind": "builder",
+      "tag": "file-upload-xls-builder",
+      "url": "https:\/\/cdn.jsdelivr.net\/gh\/SAP-Custom-Widget\/fileUploadXLS@1.0.0\/fileUploadXLS.bundle.js",
+      "integrity": "sha256-3cwsOaW+I2jKX3zZxom+pJ7RzXoS0i6UnCM2Vst1qLM=",
+      "ignoreIntegrity": false
+    }
+  ],
+  "properties": {},
+  "methods": {
+    "setHierarchyStructure": {
+      "description": "Sets the hierarchical structure for the data.",
+      "parameters": [
+        {
+          "name": "hierarchy",
+          "type": "Selection"
+        }
+      ]
+    },
+    "setFilterByValue": {
+      "description": "Applies a filter to records based on a constant value.",
+      "parameters": [
+        {
+          "name": "filterByValue",
+          "type": "Selection"
+        }
+      ]
+    },
+    "setFilterByContains": {
+      "description": "Applies a filter to records based on a value that contains a specific character.",
+      "parameters": [
+        {
+          "name": "filterByContains",
+          "type": "Selection"
+        }
+      ]
+    },
+    "getDataAsJson": {
+      "returnType": "Selection[]",
+      "description": "Retrieves uploaded data in JSON/Selection/Object format."
+    },
+    "getDataAsRaw": {
+      "returnType": "string",
+      "description": "Retrieves uploaded data in raw string format."
+    },
+    "getTotalRecordsCount": {
+      "returnType": "integer",
+      "description": "Gets the total count of records."
+    },
+    "getHeaders": {
+      "returnType": "string[]",
+      "description": "Gets the headers of uploaded data as an array."
+    }
+  },
+  "events": {}
 }
