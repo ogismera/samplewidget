@@ -1,9 +1,9 @@
 {
   "id": "com.rohitchouhan.fileUploadXLS",
-  "name": "fileUploadXLS",
+  "name": "fileDownloadXLS",
   "version": "1.0.0",
   "description": "A custom widget designed to work with Excel or XLS files, helping you retrieve file data in JSON, raw, and multiple other formats",
-  "newInstancePrefix": "fileUploadXLS",
+  "newInstancePrefix": "fileDownloadXLS",
   "vendor": "rohitchouhan.com",
   "eula": "rohitchouhan.com",
   "license": "MIT",
@@ -16,14 +16,14 @@
     {
       "kind": "main",
       "tag": "file-upload-xls",
-      "url": "https:\/\/cdn.jsdelivr.net\/gh\/SAP-Custom-Widget\/fileUploadXLS@1.0.0\/fileUploadXLS.bundle.js",
+      "url": "https://github.com/ogismera/samplewidget/blob/main/main.js",
       "integrity": "sha256-3cwsOaW+I2jKX3zZxom+pJ7RzXoS0i6UnCM2Vst1qLM=",
       "ignoreIntegrity": false
     },
     {
       "kind": "builder",
       "tag": "file-upload-xls-builder",
-      "url": "https:\/\/cdn.jsdelivr.net\/gh\/SAP-Custom-Widget\/fileUploadXLS@1.0.0\/fileUploadXLS.bundle.js",
+      "url": "https://github.com/ogismera/samplewidget/blob/main/main.js",
       "integrity": "sha256-3cwsOaW+I2jKX3zZxom+pJ7RzXoS0i6UnCM2Vst1qLM=",
       "ignoreIntegrity": false
     }
@@ -48,12 +48,12 @@
         }
       ]
     },
-    "setFilterByContains": {
+    "exportXML": {
       "description": "Applies a filter to records based on a value that contains a specific character.",
       "parameters": [
         {
-          "name": "filterByContains",
-          "type": "Selection"
+          "name": "Data",
+          "type": "string"
         }
       ]
     },
@@ -61,7 +61,7 @@
       "returnType": "Selection[]",
       "description": "Retrieves uploaded data in JSON/Selection/Object format."
     },
-    "getDataAsRaw": {
+    "gettest1": {
       "returnType": "string",
       "description": "Retrieves uploaded data in raw string format."
     },
