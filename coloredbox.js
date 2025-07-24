@@ -123,7 +123,7 @@
 
                                }
 						   */ 
-                getText() {
+                getText(text) {
 
 	        	var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
 			var obj;
