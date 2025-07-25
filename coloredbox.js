@@ -70,6 +70,6 @@
     onCustomWidgetAfterUpdate(changedProperties) {
     }
   }
-
-  customElements.define("com-oscar-exportxmlwidget", ExportXmlWidget);
+;
+  customElements.define("com-rohitchouhan-sap-chatgptwidget", Widget);
 })();
