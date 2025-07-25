@@ -1,4 +1,5 @@
 (function () {
+debugger;
 console.log("hello.js loaded");
 const template = document.createElement("template");
 template.innerHTML = `
@@ -12,6 +13,7 @@ pre{ max-height:240px; overflow:auto; background:#f7f7f7; padding:8px; white-spa
 class ExportXmlWidget extends HTMLElement {
 constructor() {
 super();
+debugger;
 this.attachShadow({ mode: "open" }).appendChild(template.content.cloneNode(true));
 
 this._preview = this.shadowRoot.getElementById("preview");
