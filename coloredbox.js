@@ -1,5 +1,5 @@
 (function () {
-
+console.log("hello.js loaded");
 const template = document.createElement("template");
 template.innerHTML = `
 <style>
