@@ -1,209 +1,132 @@
-(function() { 
-	var text;
-	var obj5;
-	let template = document.createElement("template");
-	template.innerHTML = `
-		<style>
-		:host {
-			border-radius: 25px;
-			border-width: 4px;
-			border-color: black;
-			border-style: solid;
-			display: block;
-		} 
-		</style> 
-	`;
+function () {
 
-	class ColoredBox extends HTMLElement {
-           
-		 
-		constructor() {		
-			super(); 
-						
-			let shadowRoot = this.attachShadow({mode: "open"});
-			shadowRoot.appendChild(template.content.cloneNode(true));
-			this.addEventListener("click", event => {
-				var event = new Event("onClick");
-				this.dispatchEvent(event);
-			});
-			this._props = {};
-			
-		        
-		}
+  const template = document.createElement("template");
+  template.innerHTML = `
+    <style>
+      :host{ display:block; font-family:sans-serif; }
+      pre{ max-height:240px; overflow:auto; background:#f7f7f7; padding:8px; white-space:pre-wrap; }
+    </style>
+    <pre id="preview"></pre>
+  `;
 
-               Arria_Call(){
+  class ExportXmlWidget extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" }).appendChild(template.content.cloneNode(true));
 
-                 var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OAvYPe1y9gA";
+      this._preview = this.shadowRoot.getElementById("preview");
 
-                var xhr = new XMLHttpRequest();
+      // propiedades que el manifest conoce
+      this.fileName = "export";
+      this.payload  = "";
 
-                 xhr.open("POST", url,true);
+      // trigger interno
+      this._trigger = false;
+    }
 
-		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
-		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNT1RJUm1FTDdLVHhJcmFod24wUzVrX1QiLCJpYXQiOjE2NjYzMzMwMjgsImV4cCI6MTgyNDAxMzAyOCwiaXNzIjoiQUxpdGUiLCJzdWIiOiJ4NHJ6eV83ZWpBSFoiLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9Lb2wyWk1yQmc5Il0sIkFMaXRlLnR0IjoidV9hIn0.D2hzLSoakfAqFJpBerBKBSHfO57_Yw0z8J6AYaN3yHpnsOlrGRIhI9f1Iar8C3pTQJWqSqaEFaFba-LJuQv7lg");
+    /* ===== setters/getters para que el body simple funcione ===== */
+    set trigger(v) {
+      const nv = !!v;
+      this._trigger = nv;
+      if (nv) {
+        this._exportNow();
+        this._trigger = false; // auto-reset
+      }
+    }
+    get trigger() {
+      return this._trigger;
+    }
 
-		xhr.onreadystatechange = function () {
-   			if (xhr.readyState === 4 ) {
-      			console.log(xhr.status);
-      			console.log(xhr.responseText);
-   			}};
+    /* ===== hooks del runtime (por si cambias props desde scripting) ===== */
+    onCustomWidgetAfterUpdate(changedProps) {
+      if (!changedProps) return;
+      if (Object.prototype.hasOwnProperty.call(changedProps, "fileName")) this.fileName = changedProps.fileName;
+      if (Object.prototype.hasOwnProperty.call(changedProps, "payload"))  this.payload  = changedProps.payload;
+      if (Object.prototype.hasOwnProperty.call(changedProps, "trigger"))  this.trigger  = !!changedProps.trigger;
+    }
 
-		var data = '{"data":[{"id":"Primary","type":"json","jsonData":{"yr2016":{"Revenue":[{"name":"Premium Income","value":"22"},{"name":"Net investment income","value":"6334"},{"name":"Fees and other income","value":"1283"}],"Expenses":[{"name":"Policyholders\' benefits","value":"19046"},{"name":"Change in policyholders\' reserves","value":"7387"},{"name":"Change in group annuity reserves assumed","value":"-1510"},{"name":"General insurance expenses","value":"2251"},{"name":"Commissions","value":"938"},{"name":"State taxes, licenses and fees","value":"237"},{"name":"Dividends to policyholders","value":"1566"},{"name":"Federal income tax (benefit) expense","value":"-326"},{"name":"Net realized capital (losses) gains","value":"-208"}]},"yr2015":{"Revenue":[{"name":"Premium Income","value":"21543"},{"name":"Net investment income","value":"6387"},{"name":"Fees and other income","value":"797"}],"Expenses":[{"name":"Policyholders\' benefits","value":"16300"},{"name":"Change in policyholders\' reserves","value":"8592"}		,{"name":"Change in group annuity reserves assumed","value":"-94200"},{"name":"General insurance expenses","value":"1793"},{"name":"Commissions","value":"869"},{"name":"State taxes, licenses and fees","value":"187"},{"name":"Dividends to policyholders","value":"1728"},{"name":"Federal income tax (benefit) expense","value":"-153"},{"name":"Net realized capital (losses) gains","value":"59"}]}}}],"projectArguments":null,"options":null}';
+    /* ================== lógica real ================== */
+    _exportNow() {
+      const xml = this._ensureXml(this.payload || "");
+      this._preview.textContent = xml;
 
- 		console.log(data);
+      try {
+        if (window.sap && sap.ui && sap.ui.core && sap.ui.core.util && sap.ui.core.util.File) {
+          sap.ui.core.util.File.save(xml, this.fileName, "xml", "application/xml", "utf-8");
+          this.dispatchEvent(new CustomEvent("onExported"));
+          return;
+        }
+      } catch (e) { /* fallback */ }
 
-		xhr.send(data);
-		     
-               }
-		
+      try {
+        const blob = new Blob([xml], { type: "application/xml;charset=utf-8;" });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement("a");
+        a.href = url;
+        a.download = this.fileName + ".xml";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } catch (e2) {
+        if (window.Application && Application.openNewWindow) {
+          const u = "data:text/xml;charset=utf-8," + encodeURIComponent(xml);
+          Application.openNewWindow(u);
+        }
+      }
 
-		Arria_Call2(obj5){
-                 console.log("Trace 5");
-		 console.log(obj5);
-		var url = "https://app.studio.arria.com:443/alite_content_generation_webapp/text/OKol2ZMrBg9";
+      this.dispatchEvent(new CustomEvent("onExported"));
+    }
 
-		var xhr = new XMLHttpRequest();
+    _ensureXml(text) {
+      const str = (typeof text === "string") ? text : String(text || "");
 
-		xhr.open("POST", url,true);
+      let arr, isArray = false;
+      try {
+        arr = JSON.parse(str);
+        if (arr && arr.length !== undefined) isArray = true;
+      } catch (e) {}
 
-		xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
-		xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNT1RJUm1FTDdLVHhJcmFod24wUzVrX1QiLCJpYXQiOjE2NjYzMzMwMjgsImV4cCI6MTgyNDAxMzAyOCwiaXNzIjoiQUxpdGUiLCJzdWIiOiJ4NHJ6eV83ZWpBSFoiLCJBTGl0ZS5wZXJtIjpbInByczp4Ok9Lb2wyWk1yQmc5Il0sIkFMaXRlLnR0IjoidV9hIn0.D2hzLSoakfAqFJpBerBKBSHfO57_Yw0z8J6AYaN3yHpnsOlrGRIhI9f1Iar8C3pTQJWqSqaEFaFba-LJuQv7lg");
+      if (isArray) {
+        return this._jsonArrayToXml(arr);
+      } else {
+        if (str.indexOf("<?xml") !== 0) {
+          return '<?xml version="1.0" encoding="UTF-8"?>\n' + str;
+        }
+        return str;
+      }
+    }
 
-		xhr.onreadystatechange = function () {
-   		if (xhr.readyState === 4 ) {
-     		 	  console.log(xhr.status);
-     			 console.log(xhr.responseText);
-			debugger;
-			 text = xhr.responseText;			
-               
-  			 }};
+    _jsonArrayToXml(arr) {
+      const lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        "<rows>"
+      ];
+      for (let i = 0; i < arr.length; i++) {
+        const row = arr[i];
+        lines.push("  <row>");
+        for (const k in row) {
+          if (Object.prototype.hasOwnProperty.call(row, k)) {
+            lines.push("    <" + k + ">" + this._escapeXml(row[k]) + "</" + k + ">");
+          }
+        }
+        lines.push("  </row>");
+      }
+      lines.push("</rows>");
+      return lines.join("\n");
+    }
 
-		var data = obj5;
+    _escapeXml(v) {
+      if (v == null) return "";
+      return String(v)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    }
+  }
 
-		xhr.send(data);
-    
+  customElements.define("com-oscar-exportxmlwidget", ExportXmlWidget);
 
-               }
-               
-               setText(text) {
-                       debugger;
-		       var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
-			var obj;
-			try { obj = JSON.parse(text); } catch (e) { obj = { value: String(text) }; }
-			var json = JSON.stringify(obj, null, 2);
-
-			try {
-				if (window.sap && sap.ui.core.util && sap.ui.core.util.File) {
-				sap.ui.core.util.File.save(json, base, "json", "application/json", "utf-8");
-			return;
-			}
-			} catch (e) {}
-
-			var blob = new Blob([json], { type: "application/json;charset=utf-8;" });
-			var url = URL.createObjectURL(blob);
-			var a = document.createElement("a");
-			a.href = url;
-			a.download = base + ".json";
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
-}
-		      
-/*		           var _text = "Hola";
-		           text = text.slice(63);
-                             this._text = text;
-                          debugger;
-                          this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                          detail: {
-                                 properties: {
-                          text: this._text
-                           }}
-                           }));
-
-                               }
-						   */ 
-                set text(_text) {
-                        debugger;
-	        	var base = ("export_" + new Date().toISOString().slice(0,19).replace(/[:T]/g, "-"));
-			var obj;
-			try { obj = JSON.parse(text); } catch (e) { obj = { value: String(text) }; }
-			var json = JSON.stringify(obj, null, 2);
-			try {
-				if (window.sap && sap.ui.core.util && sap.ui.core.util.File) {
-				sap.ui.core.util.File.save(json, base, "json", "application/json", "utf-8");
-			return;
-			}
-			} catch (e) {}
-			var blob = new Blob([json], { type: "application/json;charset=utf-8;" });
-			var url = URL.createObjectURL(blob);
-			var a = document.createElement("a");
-			a.href = url;
-			a.download = base + ".json";
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
-
-                           setTimeout(function () {console.log(text);}, 1000);
-			       debugger;
-		/*	       var _text = text.slice(63);
-                               return this._text;
-		*/
-                           }
-
-                
-		onCustomWidgetBeforeUpdate(changedProperties) {
-			this._props = { ...this._props, ...changedProperties };
-			
-			
-		}
-
-		onCustomWidgetAfterUpdate(changedProperties) {
-			
-
-			/*if ("color" in changedProperties) {
-				this.style["background-color"] = changedProperties["color"];
-			}
-			if ("opacity" in changedProperties) {
-				this.style["opacity"] = changedProperties["opacity"];
-			}
-			
-			const dataBinding = this.dataBindings.getDataBinding('myDataBinding');
-			var datas = this.myDataBinding.data;
-			var arr = [];
-			var count = 0;
-			this.myDataBinding.data.forEach(row =>{
-			  arr[count] =  row;
-		          count++;
-			} );
-			var newArray2 = [];
-			const obj3 = [];
-			const obj4 = [];
-			count = 0;
-                        for (let k in arr) {
-				newArray2.push({'id': k, 'value': arr[k]});
-    				obj3 [count] = JSON.stringify(arr[k]);
-				if (count > 0) {
-   				   obj4 [count]= '"Row' + count + '": ' + obj3[count];
-  					} 
-				   else {
-			            obj4 [count]= obj3[count];
-				   }
-				count = count + 1;
-				newArray2.shift();
-				}
-			
-			 obj5 = '{"data": [ { "id": "Primary", "type": "json","jsonData":{"data":[{"id":"Primary","type":"json","jsonData":' + obj4 + '}]}}],"projectArguments":null,"options":null}';
-			console.log(obj5);
-			this.Arria_Call2(obj5);
-   
-			this.setText(text);
-			this.getText(text);
-	*/		
-
-	}
-	}
-
-	customElements.define("com-sap-sample-coloredbox", ColoredBox);
 })();
