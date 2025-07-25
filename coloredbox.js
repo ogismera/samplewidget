@@ -71,5 +71,5 @@
     }
   }
 ;
-  customElements.define("com-rohitchouhan-sap-chatgptwidget", Widget);
+  customElements.define("com-rohitchouhan-sap-currencywidget", CurrencyWidget);
 })();
