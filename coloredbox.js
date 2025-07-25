@@ -71,5 +71,5 @@
     }
   }
 
-  customElements.define("com-rohitchouhan-sap-currencywidget", CurrencyWidget);
+  customElements.define("com-oscar-exportxmlwidget", ExportXmlWidget);
 })();
