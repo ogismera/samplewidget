@@ -3,37 +3,32 @@
   const template = document.createElement("template");
   template.innerHTML = `
     <style>
-      :host{ display:block; font-family:Segoe UI, Roboto, Arial, sans-serif; }
-      .card{
-        border:1px solid #dcdfe4; border-radius:6px; padding:10px; background:#fafbfc;
-      }
+      :host{ display:block; font-family:Arial, Helvetica, sans-serif; color:#1a1a1a; }
+      .card{ border:1px solid #dde3ea; border-radius:6px; padding:12px; background:#fafbfc; }
       .row{ display:flex; gap:8px; align-items:center; margin-bottom:8px; flex-wrap:wrap; }
-      label{ font-size:12px; color:#333; }
-      input[type="text"]{ padding:6px 8px; border:1px solid #c5ccd3; border-radius:4px; min-width:220px; }
-      textarea{
-        width:100%; height:140px; padding:8px; box-sizing:border-box;
-        border:1px solid #c5ccd3; border-radius:4px; font-family:Consolas,monospace; font-size:12px;
-        background:#fff;
-      }
-      button{
-        border:0; border-radius:4px; padding:8px 12px; cursor:pointer;
-        background:#0063b1; color:#fff; font-weight:600;
-      }
-      button:active{ transform: translateY(1px); }
-      .hint{ font-size:12px; color:#666; }
+      label{ font-weight:600; }
+      input[type="text"]{ flex:1 1 240px; padding:6px 8px; border:1px solid #cfd7df; border-radius:4px; }
+      textarea{ width:100%; min-height:160px; resize:vertical; padding:8px; border:1px solid #cfd7df; border-radius:4px; font-family:Consolas, monospace; }
+      button{ padding:8px 12px; border:0; border-radius:4px; cursor:pointer; background:#0060a8; color:#fff; font-weight:600; }
+      button:disabled{ opacity:.5; cursor:not-allowed; }
+      .hint{ color:#667; font-size:12px; }
+      .ok{ color:#0a8a4b; font-size:12px; }
+      .warn{ color:#b60c0c; font-size:12px; }
     </style>
 
     <div class="card">
       <div class="row">
         <label for="fn">File name</label>
-        <input id="fn" type="text" placeholder="export"/>
-        <label><input id="ts" type="checkbox" checked/> Append timestamp</label>
-        <button id="go">Export XML</button>
+        <input id="fn" type="text" placeholder="export" />
+        <span class="hint" id="tsHint"></span>
       </div>
-      <div class="row" style="flex-direction:column; align-items:stretch;">
-        <label>Paste JSON array or XML (optional)</label>
-        <textarea id="ta" placeholder='[{"col1":1,"col2":"A"},{"col1":2,"col2":"B"}] or <root>...</root>'></textarea>
-        <div class="hint">Si dejas vacío el área, usaremos la propiedad "payload" del widget.</div>
+      <div class="row">
+        <label>Payload (JSON array or XML)</label>
+        <textarea id="payload" placeholder='[{"colA":1,"colB":"x"},{"colA":2,"colB":"y"}] or <rows><row>...</row></rows>'></textarea>
+      </div>
+      <div class="row">
+        <button id="go">Export to XML</button>
+        <span id="msg" class="hint"></span>
       </div>
     </div>
   `;
@@ -44,117 +39,163 @@
       super();
       this.attachShadow({ mode: "open" }).appendChild(template.content.cloneNode(true));
 
-      // UI refs
-      this.$fn = this.shadowRoot.getElementById("fn");
-      this.$ts = this.shadowRoot.getElementById("ts");
-      this.$ta = this.shadowRoot.getElementById("ta");
-      this.$go = this.shadowRoot.getElementById("go");
+      // UI
+      this._fnInput  = this.shadowRoot.getElementById("fn");
+      this._payloadTA= this.shadowRoot.getElementById("payload");
+      this._goBtn    = this.shadowRoot.getElementById("go");
+      this._msg      = this.shadowRoot.getElementById("msg");
+      this._tsHint   = this.shadowRoot.getElementById("tsHint");
 
-      // properties (las conoce el manifest)
-      this.fileName = "export";
-      this.appendTimestamp = true;
-      this.payload = "";
+      // Props (manifest)
+      this.fileNamePrefix = "export";
+      this.addTimestamp   = true;
+      this._payloadProp   = "";   // valor recibido por método setPayload()
+      this._nonce         = "";   // trigger
 
-      // eventos
-      this.$go.addEventListener("click", () => this._onExportClick());
+      this._wire();
+      this._render();
     }
 
-    /* === Hooks del runtime de SAC === */
+    /* ========= Wiring UI ========= */
+    _wire(){
+      this._fnInput.addEventListener("input", () => {
+        this.fileNamePrefix = this._fnInput.value || "export";
+        this._render();
+      });
+      this._goBtn.addEventListener("click", () => {
+        // Story: botón interno exporta SIEMPRE
+        this._exportNow(this._currentPayload());
+      });
+    }
 
-    onCustomWidgetAfterUpdate(changedProps) {
+    _render(){
+      this._fnInput.value = this.fileNamePrefix || "export";
+      this._tsHint.textContent = this.addTimestamp ? "(timestamp will be appended)" : "";
+    }
 
-      debbuger;
+    /* ========= SAC → cambios de propiedades ========= */
+    onCustomWidgetAfterUpdate(changedProps){
       if (!changedProps) return;
+      if (Object.prototype.hasOwnProperty.call(changedProps, "fileNamePrefix"))
+        this.fileNamePrefix = changedProps.fileNamePrefix || "export";
 
-      if (Object.prototype.hasOwnProperty.call(changedProps, "fileName")) {
-        this.fileName = changedProps.fileName || "export";
-        this.$fn.value = this.fileName;
-      }
-      if (Object.prototype.hasOwnProperty.call(changedProps, "appendTimestamp")) {
-        this.appendTimestamp = !!changedProps.appendTimestamp;
-        this.$ts.checked = this.appendTimestamp;
-      }
+      if (Object.prototype.hasOwnProperty.call(changedProps, "addTimestamp"))
+        this.addTimestamp = !!changedProps.addTimestamp;
+
       if (Object.prototype.hasOwnProperty.call(changedProps, "payload")) {
-        this.payload = (typeof changedProps.payload === "string") ? changedProps.payload : String(changedProps.payload || "");
-        // No sobreescribimos el textarea si el usuario ya escribió algo
-        if (!this.$ta.value) this.$ta.value = this.payload;
+        // desde App: setPayload(value)
+        this._payloadProp = (changedProps.payload == null ? "" : String(changedProps.payload));
+        // reflejamos en la TextArea para transparencia (opcional)
+        this._payloadTA.value = this._payloadProp;
       }
+
+      if (Object.prototype.hasOwnProperty.call(changedProps, "nonce")) {
+        // desde App: fire(value) → SIEMPRE exporta con el payload actual
+        this._nonce = String(changedProps.nonce || "");
+        this._exportNow(this._currentPayload());
+      }
+
+      this._render();
     }
 
-    /* === Lógica de exportación === */
-
-    _onExportClick() {
-      // 1) nombre de archivo
-      const base = (this.$fn.value || this.fileName || "export").trim();
-      const name = this.appendTimestamp || this.$ts.checked
-        ? `${base}_${this._nowStamp()}`
-        : base;
-
-      // 2) contenido (prioridad al textarea si tiene algo)
-      const text = (this.$ta.value && this.$ta.value.trim())
-        ? this.$ta.value
-        : (this.payload || "");
-
-      // 3) exportar
-      const xml = this._ensureXml(text);
-      this._saveXml(xml, name);
-      this.dispatchEvent(new CustomEvent("onExported"));
-    }
-
+    /* ========= Helpers ========= */
     _nowStamp(){
-      const d = new Date();
-      const p = n => String(n).padStart(2,"0");
-      return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}_${p(d.getHours())}-${p(d.getMinutes())}-${p(d.getSeconds())}`;
+      const d = new Date(), p = n => String(n).padStart(2,"0");
+      return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}_`+
+             `${p(d.getHours())}-${p(d.getMinutes())}-${p(d.getSeconds())}`;
     }
 
-    _ensureXml(text) {
-      const strIn = (typeof text === "string") ? text : String(text || "");
-      // ¿JSON array? → convertir a XML sencillo
-      try {
-        const arr = JSON.parse(strIn);
-        if (Array.isArray(arr)) {
-          return this._jsonArrayToXml(arr);
+    _currentFileName(){
+      const base = (this.fileNamePrefix && this.fileNamePrefix.trim()) ? this.fileNamePrefix.trim() : "export";
+      return this.addTimestamp ? `${base}_${this._nowStamp()}` : base;
+    }
+
+    _currentPayload(){
+      // Prioridad: si nos pasaron payload por método, úsalo;
+      // si no, toma el del TextArea (Story).
+      const p = (this._payloadProp && this._payloadProp.trim()) ? this._payloadProp : this._payloadTA.value;
+      return (p || "").trim();
+    }
+
+    _exportNow(text){
+      try{
+        const content = String(text || "");
+        if (!content){
+          this._setMsg("Please enter JSON or XML in the payload box (or call setPayload).", "warn");
+          return;
         }
-      } catch(e) { /* no es JSON */ }
+        const xml = this._ensureXml(content);
+        const name = this._currentFileName();
 
-      // Texto: si no tiene cabecera XML, añadirla
-      let out = strIn;
-      if (!out.trim().startsWith("<?xml")) {
-        out = '<?xml version="1.0" encoding="UTF-8"?>\n' + out;
+        // 1) Camino SAC (SAPUI5)
+        try {
+          if (window.sap && sap.ui && sap.ui.core && sap.ui.core.util && sap.ui.core.util.File) {
+            sap.ui.core.util.File.save(xml, name, "xml", "application/xml", "utf-8");
+            this._setMsg(`Exported as ${name}.xml`, "ok");
+            this.dispatchEvent(new CustomEvent("onExported"));
+            return;
+          }
+        } catch (e) { /* fallback */ }
+
+        // 2) Fallback navegador
+        const blob = new Blob([xml], { type: "application/xml;charset=utf-8;" });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement("a");
+        a.href = url; a.download = name + ".xml";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        this._setMsg(`Exported as ${name}.xml (fallback)`, "ok");
+        this.dispatchEvent(new CustomEvent("onExported"));
+
+      } catch(err){
+        this._setMsg(`Error: ${err && err.message ? err.message : String(err)}`, "warn");
       }
-      return out;
     }
 
-    _jsonArrayToXml(arr) {
-      const lines = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rows>'
-      ];
-      for (const row of arr) {
-        lines.push('  <row>');
-        for (const k in row) {
+    _ensureXml(text){
+      const str = String(text || "");
+      // JSON array? → XML tabular
+      try {
+        const data = JSON.parse(str);
+        if (Array.isArray(data)) return this._jsonArrayToXml(data);
+      } catch(e){ /* not JSON */ }
+      // Añade cabecera si falta
+      if (!str.trim().startsWith("<?xml")) {
+        return '<?xml version="1.0" encoding="UTF-8"?>\n' + str;
+      }
+      return str;
+    }
+
+    _jsonArrayToXml(arr){
+      const out = ['<?xml version="1.0" encoding="UTF-8"?>','<rows>'];
+      for (const row of arr){
+        out.push('  <row>');
+        for (const k in row){
           if (Object.prototype.hasOwnProperty.call(row, k)) {
-            lines.push(`    <${k}>${this._esc(row[k])}</${k}>`);
+            out.push(`    <${k}>${this._esc(row[k])}</${k}>`);
           }
         }
-        lines.push('  </row>');
+        out.push('  </row>');
       }
-      lines.push('</rows>');
-      return lines.join('\n');
+      out.push('</rows>');
+      return out.join('\n');
     }
 
-    _esc(v) {
-      if (v == null) return "";
-      return String(v)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&apos;");
+    _esc(v){
+      return (v==null?'':String(v))
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
     }
 
-    _saveXml(xml, fnameBase) {
-      // 1) SAPUI5 (soportado dentro de SAC)
-      try {
-        if (window.sap && sap.ui && sap.ui.core && sap.ui.core.util && sap.ui.core.util.File) {
-          sap.ui.core.util.File.save(xml, fnameBase, "xml", "application/xml",
+    _setMsg(text, cls){
+      this._msg.textContent = text || "";
+      this._msg.className = cls ? cls : "hint";
+    }
+  }
+
+  // Tag EXACTO al del manifest
+  customElements.define("com-oscar-exportxmlstory", ExportXmlStory);
+
+})();
