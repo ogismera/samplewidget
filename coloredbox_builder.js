@@ -36,6 +36,7 @@
   class ExportXmlStory extends HTMLElement {
 
     constructor() {
+      debugger;
       super();
       this.attachShadow({ mode: "open" }).appendChild(template.content.cloneNode(true));
 
@@ -75,6 +76,7 @@
 
     /* ========= SAC → cambios de propiedades ========= */
     onCustomWidgetAfterUpdate(changedProps){
+      debugger;
       if (!changedProps) return;
       if (Object.prototype.hasOwnProperty.call(changedProps, "fileNamePrefix"))
         this.fileNamePrefix = changedProps.fileNamePrefix || "export";
